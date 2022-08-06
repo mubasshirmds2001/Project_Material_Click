@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_material">
+
+    <EditText
+        android:id="@+id/edParty_name"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:drawableStart="@drawable/ic_party_name"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Party Name *"
+        android:padding="10dp"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edQuantity"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Quantity *"
+        android:padding="10dp"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.352"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/edQuantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edQuantity" />
+
+    <TextView
+        android:id="@+id/tvMaterialcost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Material Cost  ₹"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edQuantity"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edQuantity"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edUnitrate"
+        app:layout_constraintHorizontal_bias="0.711"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edQuantity"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <EditText
+        android:id="@+id/edUnitrate"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Unit Rate"
+        android:padding="10dp"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.352"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edDate"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:drawableStart="@drawable/ic_date"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Date"
+        android:padding="10dp"
+        android:textColor="#0F1051"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        tools:ignore="MissingConstraints" />
+
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.246" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="200dp"
+        android:layout_height="53dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="236dp"
+        android:background="@drawable/save_btn_style"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:text="SAVE"
+        android:textColor="#F1F1F1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        app:layout_constraintVertical_bias="0.908" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

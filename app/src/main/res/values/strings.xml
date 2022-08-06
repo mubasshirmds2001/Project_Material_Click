@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Material_click</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="materials">
+        <item>Select Material</item>
+        <item>Cement</item>
+        <item>Steel 10 mm</item>
+        <item>Red Clay Bricks</item>
+        <item>M-Sand</item>
+        <item>Induction Motos</item>
+        <item>Aggregate 12 mm</item>
+    </string-array>
+</resources>
