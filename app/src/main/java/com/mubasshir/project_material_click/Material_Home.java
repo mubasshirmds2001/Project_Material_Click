@@ -44,6 +44,7 @@ public class Material_Home extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Materials minfo=dataSnapshot.getValue(Materials.class);
                     list.add(minfo);
