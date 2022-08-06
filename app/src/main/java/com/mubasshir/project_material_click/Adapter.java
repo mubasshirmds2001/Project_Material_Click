@@ -33,7 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         Materials materials = list.get(position);
 
         holder.txtMaterial.setText(materials.getMaterial());
-        holder.txtQuantity.setText(materials.getQuantity());
+        holder.txtPurchased.setText(materials.getQuantity());
         holder.txtStock.setText(materials.getQuantity());
 
     }
@@ -47,7 +47,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         public TextView txtPartyname;
         public TextView txtDate;
         public TextView txtMaterial;
-        public TextView txtQuantity;
+        public TextView txtPurchased;
         public TextView txtStock;
         public TextView txtUnitRate;
         public TextView txtAmount;
@@ -55,12 +55,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtPartyname=(TextView)itemView.findViewById(R.id.tvMaterial);
+//            txtPartyname=(TextView)itemView.findViewById(R.id.tvMaterial);
 //            txtDate=(TextView)itemView.findViewById(R.id.tvDate);
-//            txtMaterial=(TextView)itemView.findViewById(R.id.tvMaterial);
-            txtQuantity=(TextView)itemView.findViewById(R.id.tvPurchased);
+            txtMaterial=(TextView)itemView.findViewById(R.id.tvMaterial);
+            txtPurchased=(TextView)itemView.findViewById(R.id.tvPurchased);
 //            txtUnitRate=(TextView)itemView.findViewById(R.id.tvMaterial);
-            txtAmount=(TextView)itemView.findViewById(R.id.tvAmount);
+            txtStock=(TextView)itemView.findViewById(R.id.tvStock);
         }
     }
 }
