@@ -26,12 +26,12 @@ import java.util.Comparator;
 
 public class Material_Home extends AppCompatActivity {
     private Button addMaterial;
-    RecyclerView recyclerView;
-    ImageView options;
-    DatabaseReference databaseReference;
-    Adapter adapter;
-    Adapter madapter;
-    ArrayList<Materials> list = new ArrayList<Materials>();
+    private RecyclerView recyclerView;
+    private ImageView options;
+    private DatabaseReference databaseReference;
+    private Adapter adapter;
+    private Adapter madapter;
+    private ArrayList<Materials> list = new ArrayList<Materials>();
 
 
     @Override
@@ -41,13 +41,22 @@ public class Material_Home extends AppCompatActivity {
 
         addMaterial = (Button) findViewById(R.id.btn_add_material);
         recyclerView = findViewById(R.id.recyclerview);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Materials");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8j4HIpOBh7Clqox9SY1").child("MaterialInfo").child("ReceivedInfo");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
         madapter = new Adapter(list, this);
         recyclerView.setAdapter(madapter);
+
+
+        madapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent=new Intent(Material_Home.this,RecycleView_Click.class);
+                startActivity(intent);
+            }
+        });
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {

@@ -3,6 +3,7 @@ package com.mubasshir.project_material_click;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -36,6 +37,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     ArrayList<Materials> list;
     Context context;
     DatabaseReference materialRef;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
 
     public Adapter(ArrayList<Materials> list, Context context) {
@@ -47,7 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.material_row, parent, false);
-        return new Adapter.ViewHolder(v);
+        return new Adapter.ViewHolder(v, mListener);
     }
 
     @Override
@@ -57,8 +67,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.txtMaterial.setText(materials.getMaterial());
         holder.txtPurchased.setText(materials.getQuantity());
         holder.txtStock.setText(materials.getQuantity());
-
-
 
     }
 
@@ -79,7 +87,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         public ImageView options;
         ImageView optionMenuButton;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
 
 //            txtPartyname=(TextView)itemView.findViewById(R.id.tvMaterial);
@@ -89,14 +97,31 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 //            txtUnitRate=(TextView)itemView.findViewById(R.id.tvMaterial);
             txtStock = (TextView) itemView.findViewById(R.id.tvStock);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
         }
 
         @Override
         public void onClick(View v) {
             int position = this.getAdapterPosition();
             Materials selectedMaterial = list.get(position);
-            String projectID = selectedMaterial.getMaterialid();
-            String projectName = selectedMaterial.getMaterial();
+            String materialReceived = selectedMaterial.getQuantity();
+            String materialStock = selectedMaterial.getStock();
+
+            Intent intent = new Intent(context, RecycleView_Click.class);
+            intent.putExtra("materialReceived", materialReceived);
+            intent.putExtra("materialStock", materialStock);
+            context.startActivity(intent);
         }
     }
 }

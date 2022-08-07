@@ -31,16 +31,16 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Add_material extends AppCompatActivity {
-    EditText partyname,date,quantity,urate;
-    Spinner material;
-    TextView amount;
-    Button save;
-    ImageButton imageButton;
-    Calendar calendar;
-    FirebaseDatabase database;
-    DatabaseReference databaseReference;
-    int maxid=0;
-    material_info modelclass;
+    private EditText partyname,date,quantity,urate;
+    private Spinner material;
+    private TextView amount;
+    private Button save;
+    private ImageButton imageButton;
+    private Calendar calendar;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private int maxid=0;
+    private Materials modelclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +93,9 @@ public class Add_material extends AppCompatActivity {
         quantity.addTextChangedListener(textWatcher);
         urate.addTextChangedListener(textWatcher);
 
-        modelclass=new material_info();
+        modelclass=new Materials();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Materials");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8j4HIpOBh7Clqox9SY1").child("MaterialInfo").child("ReceivedInfo");
 //        materialreference = reference.child(FirebaseAuth.getInstance().getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {

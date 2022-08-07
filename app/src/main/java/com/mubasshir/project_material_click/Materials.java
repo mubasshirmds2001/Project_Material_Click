@@ -3,9 +3,13 @@ package com.mubasshir.project_material_click;
 import com.google.firebase.database.Exclude;
 
 public class Materials {
-    private String materialid,party,date,material,quantity,rate,amount;
+    private String materialid,party,date,dateused,material,quantity,stock,rate,amount;
 
-    public Materials(String materialid, String party, String date, String material, String quantity, String rate, String amount) {
+    public Materials(){
+
+    }
+
+    public Materials(String materialid, String party, String date, String material, String quantity,String stock, String rate, String amount) {
         this.materialid = materialid;
         this.party = party;
         this.date = date;
@@ -13,6 +17,8 @@ public class Materials {
         this.quantity = quantity;
         this.rate = rate;
         this.amount = amount;
+        this.stock = stock;
+
     }
     @Exclude
     public String getMaterialid() {
@@ -71,7 +77,13 @@ public class Materials {
         this.amount = amount;
     }
 
-    public Materials(){
-
+    public String getStock() {
+        return stock;
     }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
+
 }
