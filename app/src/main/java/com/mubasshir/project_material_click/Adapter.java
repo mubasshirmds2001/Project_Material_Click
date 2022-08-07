@@ -119,8 +119,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             String materialStock = selectedMaterial.getStock();
 
             Intent intent = new Intent(context, RecycleView_Click.class);
-            intent.putExtra("materialReceived", materialReceived);
-            intent.putExtra("materialStock", materialStock);
+            intent.putExtra("quantity", materialReceived);
+            intent.putExtra("quantity", materialStock);
             context.startActivity(intent);
         }
     }
