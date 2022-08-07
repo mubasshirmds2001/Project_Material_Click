@@ -1,15 +1,18 @@
 package com.mubasshir.project_material_click;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +35,10 @@ public class Add_material extends AppCompatActivity {
     Spinner material;
     TextView amount;
     Button save;
-//    Button back;
+    ImageButton imageButton;
     Calendar calendar;
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference databaseReference;
     int maxid=0;
     material_info modelclass;
 
@@ -51,6 +54,10 @@ public class Add_material extends AppCompatActivity {
         urate=findViewById(R.id.edUnitrate);
         amount=findViewById(R.id.tvAmount);
         save=findViewById(R.id.btn_save);
+        imageButton = findViewById(R.id.btn_back_list_order);
+
+        imageButton.setOnClickListener(v -> finish());
+
 //        back=findViewById(R.id.btn_back);
 
 //        back.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +95,10 @@ public class Add_material extends AppCompatActivity {
 
         modelclass=new material_info();
 
-        reference = FirebaseDatabase.getInstance().getReference("Materials");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Materials");
 //        materialreference = reference.child(FirebaseAuth.getInstance().getUid());
 
-        reference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -151,7 +158,7 @@ public class Add_material extends AppCompatActivity {
                 modelclass.setRate(urate.getText().toString());
                 modelclass.setAmount(amount.getText().toString());
 
-                reference.child(String.valueOf(maxid+1)).setValue(modelclass);
+                databaseReference.child(String.valueOf(maxid+1)).setValue(modelclass);
             }
         });
 

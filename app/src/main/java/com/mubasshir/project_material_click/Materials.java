@@ -1,15 +1,26 @@
 package com.mubasshir.project_material_click;
 
-public class Materials {
-    private String party,date,material,quantity,rate,amount;
+import com.google.firebase.database.Exclude;
 
-    public Materials(String party, String date, String material, String quantity, String rate, String amount) {
+public class Materials {
+    private String materialid,party,date,material,quantity,rate,amount;
+
+    public Materials(String materialid, String party, String date, String material, String quantity, String rate, String amount) {
+        this.materialid = materialid;
         this.party = party;
         this.date = date;
         this.material = material;
         this.quantity = quantity;
         this.rate = rate;
         this.amount = amount;
+    }
+    @Exclude
+    public String getMaterialid() {
+        return materialid;
+    }
+    @Exclude
+    public void setMaterialid(String materialid) {
+        this.materialid = materialid;
     }
 
     public String getParty() {

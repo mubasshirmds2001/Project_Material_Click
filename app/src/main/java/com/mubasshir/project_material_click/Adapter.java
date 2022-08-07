@@ -1,20 +1,42 @@
 package com.mubasshir.project_material_click;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
+import static android.content.ContentValues.TAG;
+
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     ArrayList<Materials> list;
     Context context;
+    DatabaseReference materialRef;
+
 
     public Adapter(ArrayList<Materials> list, Context context) {
         this.list = list;
@@ -24,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     @NonNull
     @Override
     public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.material_row, parent, false);
         return new Adapter.ViewHolder(v);
     }
 
@@ -36,14 +58,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         holder.txtPurchased.setText(materials.getQuantity());
         holder.txtStock.setText(materials.getQuantity());
 
+
+
     }
+
 
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtPartyname;
         public TextView txtDate;
         public TextView txtMaterial;
@@ -51,16 +76,27 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         public TextView txtStock;
         public TextView txtUnitRate;
         public TextView txtAmount;
+        public ImageView options;
+        ImageView optionMenuButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
 //            txtPartyname=(TextView)itemView.findViewById(R.id.tvMaterial);
 //            txtDate=(TextView)itemView.findViewById(R.id.tvDate);
-            txtMaterial=(TextView)itemView.findViewById(R.id.tvMaterial);
-            txtPurchased=(TextView)itemView.findViewById(R.id.tvPurchased);
+            txtMaterial = (TextView) itemView.findViewById(R.id.tvMaterial);
+            txtPurchased = (TextView) itemView.findViewById(R.id.tvPurchased);
 //            txtUnitRate=(TextView)itemView.findViewById(R.id.tvMaterial);
-            txtStock=(TextView)itemView.findViewById(R.id.tvStock);
+            txtStock = (TextView) itemView.findViewById(R.id.tvStock);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = this.getAdapterPosition();
+            Materials selectedMaterial = list.get(position);
+            String projectID = selectedMaterial.getMaterialid();
+            String projectName = selectedMaterial.getMaterial();
         }
     }
 }
