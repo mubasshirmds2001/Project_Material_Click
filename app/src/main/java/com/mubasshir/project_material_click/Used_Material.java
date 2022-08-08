@@ -33,7 +33,7 @@ public class Used_Material extends AppCompatActivity {
     private EditText dateused,quantity;
     private DatabaseReference databaseReference;
     private int maxid=0;
-    private Materials materials;
+    private Materials materials=new Materials();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

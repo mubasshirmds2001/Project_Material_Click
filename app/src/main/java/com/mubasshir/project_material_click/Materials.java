@@ -3,7 +3,7 @@ package com.mubasshir.project_material_click;
 import com.google.firebase.database.Exclude;
 
 public class Materials {
-    private String materialid,party,date,dateused,material,quantity,stock,rate,amount;
+    private String materialid,party,date,material,quantity,stock,rate,amount;
 
     public Materials(){
 
