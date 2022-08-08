@@ -95,7 +95,7 @@ public class Add_material extends AppCompatActivity {
 
         modelclass=new Materials();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8j4HIpOBh7Clqox9SY1").child("MaterialInfo").child("ReceivedInfo");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8rDsLnJCb4p6h31qVG1").child("MaterialInfo").child("ReceivedInfo");
 //        materialreference = reference.child(FirebaseAuth.getInstance().getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {

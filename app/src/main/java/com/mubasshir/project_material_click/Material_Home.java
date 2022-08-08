@@ -25,13 +25,16 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Material_Home extends AppCompatActivity {
-    private Button addMaterial;
-    private RecyclerView recyclerView;
+    private Button receivedMat,usedMat;
+    private RecyclerView recyclerView,recyclerViewUse;
     private ImageView options;
     private DatabaseReference databaseReference;
+    private DatabaseReference usedRef;
     private Adapter adapter;
     private Adapter madapter;
     private ArrayList<Materials> list = new ArrayList<Materials>();
+    private ArrayList<Materials> listU = new ArrayList<Materials>();
+    private Adapter uadapter;
 
 
     @Override
@@ -39,24 +42,24 @@ public class Material_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material__home);
 
-        addMaterial = (Button) findViewById(R.id.btn_add_material);
-        recyclerView = findViewById(R.id.recyclerview);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8j4HIpOBh7Clqox9SY1").child("MaterialInfo").child("ReceivedInfo");
+        receivedMat = (Button) findViewById(R.id.btn_received);
+        usedMat = (Button) findViewById(R.id.btn_used);
+        recyclerView = findViewById(R.id.recyclerviewRec);
+        recyclerViewUse = findViewById(R.id.recyclerviewUse);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8rDsLnJCb4p6h31qVG1").child("MaterialInfo").child("ReceivedInfo");
+        usedRef = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8rDsLnJCb4p6h31qVG1").child("MaterialInfo").child("UsedInfo");
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewUse.setHasFixedSize(true);
+        recyclerViewUse.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
         madapter = new Adapter(list, this);
         recyclerView.setAdapter(madapter);
-
-
-        madapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent=new Intent(Material_Home.this,RecycleView_Click.class);
-                startActivity(intent);
-            }
-        });
+        listU = new ArrayList<>();
+        uadapter = new Adapter(listU, this);
+        recyclerViewUse.setAdapter(uadapter);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -82,11 +85,42 @@ public class Material_Home extends AppCompatActivity {
             }
         });
 
+        usedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listU.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Materials muinfo = dataSnapshot.getValue(Materials.class);
+                        listU.add(muinfo);
+                    }
+//                sortOrders();
+                    uadapter.notifyDataSetChanged();
+                    Log.d("materialData", "data received successfully");
+                    Log.d("materialData", list.toString());
+//                madapter.notifyDataSetChanged();
+                }
+            }
 
-        addMaterial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        receivedMat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Material_Home.this, Add_material.class);
+                startActivity(intent);
+            }
+        });
+
+        usedMat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Material_Home.this, Used_Material.class);
                 startActivity(intent);
             }
         });

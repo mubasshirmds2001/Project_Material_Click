@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Used_Material"></activity>
-        <activity android:name=".RecycleView_Click" />
         <activity android:name=".Material_Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

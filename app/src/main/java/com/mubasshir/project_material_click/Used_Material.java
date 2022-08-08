@@ -46,7 +46,7 @@ public class Used_Material extends AppCompatActivity {
         quantity=findViewById(R.id.edQuantityused);
         saveused=findViewById(R.id.btn_save_used);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8j4HIpOBh7Clqox9SY1").child("MaterialInfo").child("UsedInfo");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Projects").child("-N8rDsLnJCb4p6h31qVG1").child("MaterialInfo").child("UsedInfo");
 
         imageButton.setOnClickListener(v -> finish());
 
