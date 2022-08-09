@@ -1,11 +1,9 @@
 package com.mubasshir.project_material_click;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Add_material extends AppCompatActivity {
+public class received_material extends AppCompatActivity {
     private EditText partyname,date,quantity,urate;
     private Spinner material;
     private TextView amount;
@@ -45,7 +43,7 @@ public class Add_material extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_material);
+        setContentView(R.layout.activity_received_material);
 
         partyname=findViewById(R.id.edParty_name);
         date=findViewById(R.id.edDate);
@@ -123,7 +121,7 @@ public class Add_material extends AppCompatActivity {
                 String unitrate=urate.getText().toString();
                 String totalamount=amount.getText().toString();
 
-                Toast.makeText(Add_material.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(received_material.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
 
 
                 if (partynm.isEmpty()) {
@@ -204,7 +202,7 @@ public class Add_material extends AppCompatActivity {
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(Add_material.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(received_material.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 

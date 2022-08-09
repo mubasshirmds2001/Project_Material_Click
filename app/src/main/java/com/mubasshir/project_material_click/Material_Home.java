@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -122,7 +120,7 @@ public class Material_Home extends AppCompatActivity {
         receivedMat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Material_Home.this, Add_material.class);
+                Intent intent = new Intent(Material_Home.this, received_material.class);
                 startActivity(intent);
             }
         });
