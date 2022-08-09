@@ -77,6 +77,7 @@ public class Material_Home extends AppCompatActivity {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Materials minfo = dataSnapshot.getValue(Materials.class);
+                        minfo.setMaterialid(dataSnapshot.getKey());
                         list.add(minfo);
                     }
                 sortOrdersRec();
@@ -100,6 +101,7 @@ public class Material_Home extends AppCompatActivity {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Materials muinfo = dataSnapshot.getValue(Materials.class);
+                        muinfo.setMaterialid(dataSnapshot.getKey());
                         listU.add(muinfo);
                     }
                 sortOrdersUse();
@@ -136,12 +138,13 @@ public class Material_Home extends AppCompatActivity {
     }
 
     private void sortOrdersUse() {
-        Collections.sort(list, new Comparator<Materials>() {
+        Collections.sort(listU, new Comparator<Materials>() {
             @Override
             public int compare(Materials o1, Materials o2) {
-                return o1.getUsedMaterial().compareToIgnoreCase(o2.getUsedMaterial());
+                return o1.getMaterialid().compareToIgnoreCase(o2.getMaterialid());
             }
         });
+        Collections.reverse(listU);
     }
 
 
@@ -149,11 +152,11 @@ public class Material_Home extends AppCompatActivity {
         Collections.sort(list, new Comparator<Materials>() {
             @Override
             public int compare(Materials o1, Materials o2) {
-                return o1.getMaterial().compareToIgnoreCase(o2.getMaterial());
+                return o1.getMaterialid().compareToIgnoreCase(o2.getMaterialid());
             }
         });
 
-//        Collections.reverse(list);
+        Collections.reverse(list);
     }
 
 
