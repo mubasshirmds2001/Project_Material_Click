@@ -61,6 +61,14 @@ public class Material_Home extends AppCompatActivity {
         uadapter = new Adapter(listU, this);
         recyclerViewUse.setAdapter(uadapter);
 
+//        Collections.sort(list, new Comparator<Materials>() {
+//            @Override
+//            public int compare(Materials o1, Materials o2) {
+//                return o1.getMaterial().compareToIgnoreCase(o2.getMaterial());
+//            }
+//        });
+//        Collections.reverse(list);
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,7 +79,7 @@ public class Material_Home extends AppCompatActivity {
                         Materials minfo = dataSnapshot.getValue(Materials.class);
                         list.add(minfo);
                     }
-//                sortOrders();
+                sortOrdersRec();
                     madapter.notifyDataSetChanged();
                     Log.d("materialData", "data received successfully");
                     Log.d("materialData", list.toString());
@@ -94,7 +102,7 @@ public class Material_Home extends AppCompatActivity {
                         Materials muinfo = dataSnapshot.getValue(Materials.class);
                         listU.add(muinfo);
                     }
-//                sortOrders();
+                sortOrdersUse();
                     uadapter.notifyDataSetChanged();
                     Log.d("materialData", "data received successfully");
                     Log.d("materialData", list.toString());
@@ -127,16 +135,26 @@ public class Material_Home extends AppCompatActivity {
 
     }
 
+    private void sortOrdersUse() {
+        Collections.sort(list, new Comparator<Materials>() {
+            @Override
+            public int compare(Materials o1, Materials o2) {
+                return o1.getUsedMaterial().compareToIgnoreCase(o2.getUsedMaterial());
+            }
+        });
+    }
 
-//    private void sortOrders() {
-//        Collections.sort(list, new Comparator<Materials>() {
-//            @Override
-//            public int compare(Materials o1, Materials o2) {
-//                return o1.getMaterialid().compareToIgnoreCase(o2.getMaterialid());
-//            }
-//        });
+
+    private void sortOrdersRec() {
+        Collections.sort(list, new Comparator<Materials>() {
+            @Override
+            public int compare(Materials o1, Materials o2) {
+                return o1.getMaterial().compareToIgnoreCase(o2.getMaterial());
+            }
+        });
+
 //        Collections.reverse(list);
-//    }
+    }
 
 
 }
